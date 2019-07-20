@@ -20,14 +20,14 @@ def get_ocr(path):
 def fill_f(path):
     img = ImageTk.PhotoImage(
         Image.open(path).resize(
-            (250, 250),
+            (400, 250),
             Image.ANTIALIAS))
     Label(
-        ub,
+        window,
         image=img).pack()
     d = get_ocr(path)
     get_result(d)
-    ub.mainloop()
+    window.mainloop()
 
 
 def open_f():
@@ -36,28 +36,28 @@ def open_f():
 
 
 # uloading button
-ub = Tk()
-ub.title("FRAUD DETECTOR")
-ub.geometry("500x470")
+window = Tk()
+window.title("FRAUD DETECTOR")
+window.geometry("1000x800")
 
 Button(
-    ub,
+    window,
     text='Upload credit card',
-    command=open_f, font=50, bg="blue", fg="white",
-    height=5, width=50).pack()
+    command=open_f,font="Helvetica 18 bold", bg="blue", fg="white",
+    height=5, width=25).pack()
 
 
 def get_result(d):
     if d[0:4] == "4000":
         Label(
-            ub,
+            window,
             text="WHITE CARD",
-            fg="red", font=25).place(x=10, y=10, in_=ub)
+            fg="red", font="Helvetica 18 bold").place(x=800, y=250, in_=window)
     if d[0:4] != "4000":
         Label(
-            ub,
-            text="BLACK CARD").place(x=10, y=10, in_=ub)
-    ub.mainloop()
+            window,
+            text="BLACK CARD",fg="red", font="Helvetica 18 bold").place(x=800, y=250, in_=ub)
+    window.mainloop()
 
 
-ub.mainloop()
+window.mainloop()
